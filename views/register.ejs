@@ -1,0 +1,98 @@
+<%- include("index") %>
+<main class="page_wrapper">
+	<div class="container">
+		<div class="form_wrapper">
+			<div class="form_title">
+				<p>PAGE NAME HERE</p>
+				<p>Register Page</p>
+			</div>
+			<% if (message && message.text.length > 0) { %>
+			<div class="error_wrapper">
+				<p><%- message.text -%></p>
+			</div>
+			<% } %>
+			<div class="form_content">
+				<form
+					method="post"
+					id="register_form"
+					action="/register"
+					class="form_holder"
+					autocomplete="off"
+				>
+					<div class="form_input_wrapper">
+						<label for="form_user">Username:</label>
+						<input
+							required
+							type="text"
+							name="user"
+							id="form_user"
+							placeholder="Enter your username..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<label for="form_duser">Display Name:</label>
+						<input
+							required
+							type="text"
+							name="duser"
+							id="form_duser"
+							placeholder="Enter your display name..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<label for="form_email">Email:</label>
+						<input
+							required
+							type="text"
+							name="email"
+							id="form_email"
+							placeholder="Enter your email address..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<label for="form_password">Password:</label>
+						<input
+							required
+							type="password"
+							name="pass"
+							id="form_password"
+							placeholder="Enter your password..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<label for="form_repassword">Re-enter your password:</label>
+						<input
+							required
+							type="password"
+							name="repass"
+							id="form_repassword"
+							placeholder="Re-enter your password..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<label for="form_secretcode">Secret Code:</label>
+						<input
+							required
+							type="text"
+							name="secret_code"
+							id="form_secretcode"
+							maxlength="6"
+							minlength="6"
+							placeholder="Enter a 6 characters secret code..."
+						/>
+					</div>
+					<div class="form_input_wrapper">
+						<a href="/login">You already have an account?</a>
+					</div>
+					<div class="form_input_wrapper">
+						<input
+							type="submit"
+							value="Register"
+							id="form_submit"
+						/>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>

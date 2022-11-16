@@ -1,0 +1,29 @@
+<%- include("index") %>
+<p>Main Page</p>
+<div>
+	<% if (user.profile && user.profile.length >= 1) { %>
+	<div class="profile_wrapper">
+		<img
+			src="js/upload/<%- user.profile %>"
+			alt="No Image"
+		/>
+	</div>
+	<% } else { %>
+	<div class="profile_wrapper">
+		<img
+			src="/assets/defavatar.png"
+			alt="No Image"
+		/>
+	</div>
+	<% } %>
+	<p>Username: <%- user.name %></p>
+	<p>Email: <%- user.email %></p>
+	<a href="/myaccount">My Account</a>
+	<form
+		action="/signout"
+		method="post"
+		id="signout_form"
+	>
+		<button type="submit">SIGN OUT</button>
+	</form>
+</div>
