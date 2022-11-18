@@ -50,6 +50,19 @@ module.exports = class User {
 		}
 		return { a: true, email: email, password: password };
 	};
+	is_admin = async (email) => {
+		if (email == null) return false;
+		const result = await this.DATABASE.fetch(
+			`SELECT role FROM users WHERE email='${email}'`
+		);
+		if (result == null || result.length <= 0) {
+			return false;
+		}
+		if (result[0].role === Role.admin) {
+			return true;
+		}
+		return false;
+	};
 	extract_mail = () => {
 		let saved_user = localStorage.getItem("user");
 		if (saved_user == null) {
@@ -62,6 +75,15 @@ module.exports = class User {
 		let split = saved_user.split("|");
 		let email = split[0].split(": ")[1] + "";
 		return email;
+	};
+	users = async () => {
+		let list = [];
+		const result = await await this.DATABASE.fetch(`SELECT * FROM users`);
+		if (result.changedRows <= 0) {
+			return list;
+		}
+		list = result;
+		return list;
 	};
 	can_reset = async (email, secret_code) => {
 		if (!this.valid.email(email)) {

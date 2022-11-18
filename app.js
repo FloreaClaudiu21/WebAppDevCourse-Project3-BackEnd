@@ -9,6 +9,7 @@ const { myaccount_route } = require("./routes/myaccount_route");
 const { login_route } = require("./routes/login_route");
 const { signout_route } = require("./routes/signout_route");
 const { register_route } = require("./routes/register_route");
+const { dashboard_route } = require("./routes/dashboard_route");
 const { resetpass_route } = require("./routes/resetpass_route");
 ////////////////////////////////////////////////////////////////
 const app = express();
@@ -36,6 +37,7 @@ app.use(signout_route);
 app.use(register_route);
 app.use(resetpass_route);
 app.use(myaccount_route);
+app.use(dashboard_route);
 // 404 ROUTE
 app.use("/", (req, res) =>
 	res.render("404", { title: "PAGE TITLE HERE | Page not found :(" })

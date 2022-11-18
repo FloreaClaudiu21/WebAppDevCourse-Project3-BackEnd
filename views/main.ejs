@@ -19,6 +19,9 @@
 	<p>Username: <%- user.name %></p>
 	<p>Email: <%- user.email %></p>
 	<a href="/myaccount">My Account</a>
+	<% if(user.role === "Admin") { %>
+	<a href="/dashboard">Admin Panel</a>
+	<% } %>
 	<form
 		action="/signout"
 		method="post"
