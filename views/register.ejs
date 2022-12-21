@@ -1,11 +1,16 @@
 <%- include("index") %>
 <main class="page_wrapper">
+	<div class="page_title">
+		<img
+			class="page_logo"
+			src="../assets/logo.png"
+			alt=""
+		/>
+		<p class="page_name">TITLE OF THE PAGE</p>
+	</div>
 	<div class="container">
 		<div class="form_wrapper">
-			<div class="form_title">
-				<p>PAGE NAME HERE</p>
-				<p>Register Page</p>
-			</div>
+			<p class="form_title">Register Page</p>
 			<% if (message && message.text.length > 0) { %>
 			<div class="error_wrapper">
 				<p><%- message.text -%></p>
@@ -82,14 +87,14 @@
 						/>
 					</div>
 					<div class="form_input_wrapper">
-						<a href="/login">You already have an account?</a>
-					</div>
-					<div class="form_input_wrapper">
 						<input
 							type="submit"
 							value="Register"
 							id="form_submit"
 						/>
+					</div>
+					<div class="form_input_wrapper">
+						<a class="form_register" href="/login">You already have an account?</a>
 					</div>
 				</form>
 			</div>

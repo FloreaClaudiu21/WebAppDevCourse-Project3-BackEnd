@@ -1,11 +1,16 @@
 <%- include("index") %>
 <main class="page_wrapper">
+	<div class="page_title">
+		<img
+			class="page_logo"
+			src="../assets/logo.png"
+			alt=""
+		/>
+		<p class="page_name">TITLE OF THE PAGE</p>
+	</div>
 	<div class="container">
 		<div class="form_wrapper">
-			<div class="form_title">
-				<p>PAGE NAME HERE</p>
-				<p>Reset your password</p>
-			</div>
+			<p class="form_title">Reset password</p>
 			<% if (message && message.text.length > 0) { %>
 			<div class="error_wrapper">
 				<p><%- message.text -%></p>
@@ -89,7 +94,7 @@
 					</div>
 					<% } %>
 					<div class="form_input_wrapper">
-						<a href="/login">Back to the login page</a>
+						<a class="form_register" href="/login">Back to the login page</a>
 					</div>
 				</form>
 			</div>

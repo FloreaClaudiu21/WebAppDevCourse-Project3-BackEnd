@@ -2,19 +2,12 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Trebuchet, Tahoma, Arial, sans-serif;
+	font-family: "Roboto", Trebuchet, Tahoma, Arial, sans-serif;
 }
 
 body {
+    width: 100%;
 	height: 100%;
-    width: 100vw;
 	min-height: 100vh;
     background-color: #eee;
-}
-
-.form_holder {
-    gap: 0.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }

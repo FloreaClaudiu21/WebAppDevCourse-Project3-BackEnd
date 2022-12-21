@@ -1,6 +1,6 @@
 const express = require("express");
-const User = require("../public/js/user");
 const router = express.Router();
+const User = require("../public/js/user");
 const page_title = "PAGE TITLE HERE | Main Page";
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
