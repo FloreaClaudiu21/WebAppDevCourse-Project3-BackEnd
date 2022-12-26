@@ -21,13 +21,13 @@
 .page_name {
 	color: white;
 	padding: 0.2rem;
-	border-radius: 10px;
 	font-size: 1.2rem;
 	text-align: center;
 	padding-left: 1rem;
 	padding-right: 1rem;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.75);
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
-	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .page_title {
@@ -66,9 +66,9 @@
 	width: 100%;
 	padding: 0.3rem;
 	text-align: center;
-	font-size: 1.3rem;
-	font-family: "Roboto", "Times New Roman";
+	font-size: 1.35rem;
 	border-bottom: 1px solid black;
+	font-family: "Roboto", "Times New Roman";
 }
 
 .form_holder {
@@ -129,7 +129,6 @@
 
 .form_register:hover {
 	color: darkblue;
-	transform: scale(1.08);
 }
 
 .error_wrapper {

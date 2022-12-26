@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require("../public/js/user");
 const router = express.Router();
-const page_title = "PAGE TITLE HERE | Account Page";
+const page_title = "Brief history of famous rock bands | Account Page";
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
 const Validate = require("../public/js/validate");
@@ -16,7 +16,7 @@ router.post("/myaccount", async (req, res) => {
 	if (files != null) {
 		sampleFile = files.profile;
 	}
-	const { dname, pass, secret } = req.body;
+	const { pass, secret } = req.body;
 	let email = USER.extract_mail();
 	if (email == null) {
 		localStorage.removeItem("user");
@@ -27,7 +27,7 @@ router.post("/myaccount", async (req, res) => {
 		await USER.delete_profile(email);
 		return;
 	}
-	await USER.change_info(email, dname, pass, sampleFile, secret);
+	await USER.change_info(email, pass, sampleFile, secret);
 	let user_data = await USER.data(email);
 	if (user_data == null || user_data.length <= 0) {
 		localStorage.removeItem("user");

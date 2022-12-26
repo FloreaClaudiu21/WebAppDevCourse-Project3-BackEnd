@@ -1,16 +1,15 @@
 const router = require("express").Router();
 const User = require("../public/js/user");
 const Validate = require("../public/js/validate");
-const page_title = "PAGE TITLE HERE | Create a new account";
+const page_title = "Brief history of famous rock bands | Create a new account";
 // [POST]
 router.post("/register", async (req, res) => {
-	const { user, duser, email, pass, repass, secret_code } = req.body;
+	const { user, email, pass, repass, secret_code } = req.body;
 	const VALIDATOR = new Validate();
 	const USER = new User(VALIDATOR);
 	/////////////////////////////////
 	let registered = await USER.register(
 		user.toLowerCase(),
-		duser,
 		email.toLowerCase(),
 		pass,
 		repass,

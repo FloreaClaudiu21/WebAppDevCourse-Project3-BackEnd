@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../public/js/user");
-const page_title = "PAGE TITLE HERE | Main Page";
+const page_title = "Brief history of famous rock bands | Main Page";
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
 const Validate = require("../public/js/validate");

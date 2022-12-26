@@ -4,7 +4,7 @@ const Validate = require("../public/js/validate");
 const { LocalStorage } = require("node-localstorage");
 const router = express.Router();
 const localStorage = new LocalStorage("./scratch");
-const page_title = "PAGE NAME | Admin dashboard";
+const page_title = "Brief history of famous rock bands | Admin dashboard";
 // [POST]
 // [GET]
 router.get("/dashboard", async (req, res) => {

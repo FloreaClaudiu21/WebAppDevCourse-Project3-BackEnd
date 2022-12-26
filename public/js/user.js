@@ -160,11 +160,10 @@ module.exports = class User {
 		}
 		return true;
 	};
-	change_info = async (email, dname, password, profile, secret) => {
+	change_info = async (email, password, profile, secret) => {
 		if (
 			!this.valid.email(email) ||
 			!this.valid.password(password) ||
-			!this.valid.text(dname, "Display Name") ||
 			!this.valid.text(secret, "Secret Code")
 		) {
 			return false;
@@ -173,16 +172,12 @@ module.exports = class User {
 		const result1 = await this.DATABASE.fetch(
 			`UPDATE users SET password='${password}' WHERE email='${email}'`
 		);
-		const result2 = await this.DATABASE.fetch(
-			`UPDATE users SET username='${dname}' WHERE email='${email}'`
-		);
 		const result3 = await this.DATABASE.fetch(
 			`UPDATE users SET secretcode='${secret}' WHERE email='${email}'`
 		);
 		if (
 			result.changedRows <= 0 &&
 			result1.changedRows <= 0 &&
-			result2.changedRows <= 0 &&
 			result3.changedRows <= 0
 		) {
 			this.valid.msgh.text = "X Error: No changes have been made!";
@@ -224,16 +219,15 @@ module.exports = class User {
 	};
 	register = async (
 		user,
-		displayname,
 		email,
 		password,
 		repass,
 		secret_code
 	) => {
+		user = user.trim();
 		if (
 			!this.valid.code(secret_code, "Secret Code") ||
 			!this.valid.text(user, "Username") ||
-			!this.valid.text(displayname, "Display Name") ||
 			!this.valid.email(email) ||
 			!this.valid.password(password) ||
 			!this.valid.samepass(password, repass)
@@ -251,7 +245,7 @@ module.exports = class User {
 			return false;
 		}
 		const result = await this.DATABASE.fetch(
-			`INSERT INTO users(name, username, email, password, role, secretcode) VALUES ('${user}', '${displayname}', '${email}', '${password}', '${Role.default}', '${secret_code}'
+			`INSERT INTO users(name, email, password, role, secretcode) VALUES ('${user}', '${email}', '${password}', '${Role.default}', '${secret_code}'
 			)`
 		);
 		if (result === null) return false;

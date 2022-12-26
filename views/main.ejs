@@ -1,34 +1,834 @@
 <%- include("index") %>
-<p>Main Page</p>
-<div>
-	<% if (user.profile && user.profile.length >= 1) { %>
-	<div class="profile_wrapper">
-		<img
-			src="js/upload/<%- user.profile %>"
-			alt="No Image"
-		/>
-	</div>
-	<% } else { %>
-	<div class="profile_wrapper">
-		<img
-			src="/assets/defavatar.png"
-			alt="No Image"
-		/>
-	</div>
-	<% } %>
-	<p>Username: <%- user.name %></p>
-	<p>Email: <%- user.email %></p>
-	<a href="/myaccount">My Account</a>
-	<% if(user.role === "Admin") { %>
-	<a href="/dashboard">Admin Panel</a>
-	<% } %>
-	<form
-		action="/signout"
-		method="post"
-		id="signout_form"
+
+<div class="mainpage__wrapper">
+	<!-- HERO SECTION -->
+	<div
+		id="hero"
+		class="hero__wrapper"
 	>
-		<button type="submit">SIGN OUT</button>
-	</form>
+		<video
+			loop
+			autoplay="true"
+			muted
+		>
+			<source src="/assets/Guitarist.mp4" />
+		</video>
+		<div class="hero__shadow"></div>
+		<div class="hero__header">
+			<div
+				class="hero__profile"
+				title="<%- user.email %>"
+			>
+				<% if (user.profile && user.profile.length >= 1) { %>
+				<img
+					class="user_photo"
+					src="js/upload/<%- user.profile %>"
+					alt="No Image"
+				/>
+
+				<% } else { %>
+				<img
+					class="user_photo"
+					src="/assets/defavatar.png"
+					alt="No Image"
+				/>
+				<% } %>
+				<span class="user_name"><%- user.name %></span>
+			</div>
+			<div class="hero__btns">
+				<a
+					class="hero_btn"
+					href="/myaccount"
+					>My Account</a
+				>
+				<% if(user.role === "Admin") { %>
+				<a
+					class="hero_btn"
+					href="/dashboard"
+					>Admin Panel</a
+				>
+				<% } %>
+				<form
+					method="post"
+					action="/signout"
+					id="signout_form"
+				>
+					<button
+						class="hero_btn signout"
+						style="color: #eee"
+						type="submit"
+					>
+						SIGN OUT
+					</button>
+				</form>
+			</div>
+			<div
+				class="hero_navmenu"
+				onclick="open_navigation()"
+			>
+				<button
+					id="menuburger"
+					class="menuburger__btn"
+					title="Toggle side menu"
+					onclick="this.classList.toggle('burger-opened');"
+				>
+					<svg
+						class="menuburger__img"
+						viewBox="0 0 100 100"
+					>
+						<path
+							class="line line1"
+							d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+						/>
+						<path
+							class="line line2"
+							d="M 20,50 H 80"
+						/>
+						<path
+							class="line line3"
+							d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+						/>
+					</svg>
+				</button>
+			</div>
+			<div class="p_bar"></div>
+		</div>
+		<div class="hero__container">
+			<img
+				class="mainpage_logo"
+				src="../assets/logo.png"
+				alt=""
+			/>
+			<p class="page_name">Brief history of famous rock bands</p>
+			<p class="page_desc">
+				In this project we will present some important information about old
+				famous rock bands, at the end of the documentation you can leave an
+				opinion or idea related to your experience on the page!
+			</p>
+			<img
+				class="hero_scrolldown"
+				src="../assets/scrolldown.gif"
+				alt=""
+			/>
+		</div>
+	</div>
+	<!-- MAIN -->
+	<div class="main__wrapper">
+		<div class="bands_wrapper">
+			<div
+				id="whats"
+				class="rock_info"
+			>
+				<img
+					src="../assets/def.png"
+					alt=""
+				/>
+				<p class="band_title">What Is Rock Music?</p>
+				<hr />
+				<span class="band_content">
+					Rock music is a broad genre of popular music that originated as “rock
+					and roll” in the United States in the late 1940s and early 1940s
+					1950s, becoming a range of different styles by the mid-1950s 1960s and
+					later, especially in the United States and Great Britain. their has
+					its roots in 1940s and 1950s rock and roll, a style that has drawn
+					directly from the blues and rhythm and blues genres of music
+					African-American and country music. Rock music originated, from also
+					from many other genres such as electric blues and folk, and
+					incorporated influences from jazz, classical and other styles musical.
+					For instrumentation, rock focused on the guitar electric, usually as
+					part of a rock group with electric bass, drums and one or more
+					singers. Usually rock is based music on songs with the 4 4 time
+					signature using a verse-chorus form, but the genre has become
+					extremely diverse. Just like pop music, the lyrics often emphasizes
+					romantic love, but also addresses a large variety of other themes that
+					are frequently social or political.<br />
+					The rock bands that I will present are:<br />
+					<ol>
+						<li>Queen</li>
+						<li>AC/DC</li>
+						<li>Red Hot Chili Peppers</li>
+						<li>The Beatles</li>
+						<li>U2</li>
+					</ol>
+				</span>
+			</div>
+			<hr />
+			<div
+				id="queen"
+				class="rock_band"
+			>
+				<span class="band_title">
+					<a
+						title="Click to watch video"
+						href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ"
+						target="_blank"
+						>1. Queen
+					</a>
+				</span>
+				<hr />
+				<div class="band_details">
+					<div class="band_photo">
+						<img
+							src="/assets/freddie mercury.png"
+							alt=""
+						/>
+					</div>
+					<div class="band_content">
+						<span>
+							Queen is a British rock band formed in London in 1970. Their
+							classic lineup was Freddie Mercury (lead vocals, piano), Brian May
+							(guitar, vocals), Roger Taylor (drums, vocals) and John Deacon
+							(bass). Their first works were influenced by rock progressive,
+							hard rock and heavy metal, but the band ventured out gradually
+							into more conventional and radio-friendly work, incorporating
+							additional styles such as arena rock and pop rock.Estimates of
+							Queen's record sales range from 170 to 300 million discs, making
+							them one of the most best selling music artists in the world. In
+							1990, Queen received Brit Award for Outstanding Contribution to
+							British Music by to the British recording industry. They were
+							included in Rock and Roll Hall of Fame in 2001. Each member has
+							composed singles by success, and all four were inducted into the
+							Songwriters Hall of Fame in 2003. In 2005, Queen received the Ivor
+							Novello Award for the british academy collection of outstanding
+							songs by composers and authors. In 2018, they were awarded a
+							Lifetime Grammy Achievement Award.
+							<h3>Formation of the band:</h3>
+							(Freddie Mercury, singing) The founding members of the band Queen
+							have met in west London in the late 1960s. The guitarist Brian May
+							built his own guitar with his father in 1963 and formed the group
+							1984 the following year with singer Tim Staffel. May left the
+							group in early 1968 to a he was focusing on his BA in Physics and
+							Astronomy in infrared at Imperial College and to find a group to
+							can write original materials. He formed the group Smile together
+							with Staffell (now on bass) and with keyboardist Chris Smith. To
+							complete the program, May placed an advertisement on a bulletin
+							board of college for a drummer like “Mitch Mitchell / Ginger
+							Baker”; Roger Taylor, a young dental student, did a audition and
+							got the job. Smith left the group early on in 1969, immediately
+							before a concert at the Royal Albert Hall with Free and the Bonzo
+							Dog Doo-Dah Band. While attending Ealing Art College in west
+							London, Staffell befriended the fellow his student Freddie
+							Bulsara, who was from Zanzibar and native Indian Parsi. Bulsara
+							had studied fashion design for a year before moving on to graphic
+							art and design and became in short a big fan of Smile. He asked if
+							it was possible was joining the group as lead singer, but May felt
+							that Staffell would not give up this role. He also ran a stall in
+							Kensington Market with Taylor. In 1970, Staffell dropped Smile,
+							feeling that his interests in Soul and R&amp;B clashed with the
+							group's hard rock sound and tired of the lack of success. He
+							formed the group Humpy Bong with ex-drummer Bee Gees, Colin
+							Petersen. The other members accepted Bulsara as lead singer and
+							recruited Taylor's friend Mike Grose ca bass player The four had
+							their first concert at an event of fundraiser in Truro on 27 June
+							1970. Bulsara suggested that the group should be renamed "Queen".
+							The others were unsure at first, but he said "it's wonderful,
+							dear, people o they will love". At the same time, he decided to
+							change his name to family in "Mercury", inspired by the line "Mama
+							Mercury, look what they did to me" in the song "my fairy king".
+							The group had the first concert under the new name in London, July
+							18. The first set consists of material that will later appear on
+							the first two albums, alongside of various rock and roll covers
+							such as Cliff Richard and "Please Don't Tease" by Shadows. They
+							attracted attention to producer John Anthony, who was interested
+							in the sound to the group, but he thought they got the bass player
+							wrong. Grose decided not to continued with the band and was
+							replaced by Barry Mitchell. In turn his, Mitchell left in January
+							1971 and was replaced by Doug Bogie for two concerts. After the
+							death of the vocal soloist, Freddie Mercury (cause of death being
+							bronchial pneumonia resulting from AIDS disease), Brian May
+							released a solo album, later Roger Taylor reunited with him, to
+							continue "in the new Queen", but John Deacon didn't want anything
+							to do with music anymore.
+						</span>
+					</div>
+				</div>
+				<div class="band_video">
+					<iframe
+						src="https://www.youtube.com/embed/fJ9rUzIMcZQ"
+						title="Queen – Bohemian Rhapsody (Official Video Remastered)"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+			<hr />
+			<div
+				id="acdc"
+				class="rock_band"
+			>
+				<span class="band_title">
+					<a
+						href="https://www.youtube.com/watch?v=v2AC41dglnM"
+						target="_blank"
+						style="color: #867c97"
+						>2. AC/DC</a
+					>
+				</span>
+				<hr />
+				<div class="band_details">
+					<div class="band_photo">
+						<img
+							src="../assets/acdc2.jpg"
+							alt=""
+						/>
+					</div>
+					<div class="band_content">
+						<span>
+							AC/DC underwent several line-up changes before releasing their
+							first album, 1975's High Voltage. The members stabilized later
+							around the Young brothers, singer Bon Scott, drummer Phil Rudd and
+							bassist Mark Evans. Evans was fired from the band in 1977 and
+							replaced by Cliff Williams, who a appeared on every AC/DC album.
+							In February 1980, Scott died because of the alcohol after a night
+							of heavy drinking. The group took considered dissolution, but
+							chose to stay together, bringing in Brian Johnson as a stand-in
+							vocalist from Geordie ca Scott's replacement. Later that year, the
+							band released his first album with Johnson, Back in Black, which
+							was dedicated to Scott. The album launched AC / DC to new heights
+							of success and a became one of the best-selling albums of all the
+							times. The band's eighth studio album, For Those About to Rock We
+							Salute You (1981), was their first album to arrive number one in
+							the United States. Before the release of the movie Flick of the
+							Switch in 1983, drummer Rudd left the band and was replaced by
+							Simon Wright, who in turn was replaced by Chris Slade in 1989. The
+							band experienced a commercial resurgence at the early nineties
+							with the release of The Razors Edge. Rudd returned to the band in
+							1994, replacing Slade and appearing on the band's next five
+							albums. The fifteenth studio album Black Ice was the second
+							best-selling 2008 album and the biggest hit since For Those About
+							to Rock, eventually reaching #1 on the level world. AC / DC have
+							sold over 200 million records in worldwide, including 75 million
+							albums in the United States, making it the ninth best band in the
+							United States. Back in Black has sold approximately 50 million
+							units throughout world, becoming the third best-selling album and
+							the best selling album by any band. The album sold 22 million
+							units in the US, where it is sixth best best selling album of all
+							time. AC / DC ranked in the place of fourth on VH1's list of the
+							"100 Greatest Hard Rock Artists rock" and was named the seventh
+							"Greatest Heavy Metal Band of all time” by MTV. In 2004, AC / DC
+							ranked at number 72 on Rolling Stone's list of “100 Greatest
+							Artists of all times". Producer Rick Rubin, who wrote a band essay
+							for Rolling Stone list, referred to AC / DC as “the greatest rock
+							and roll band ever the times". In 2010, VH1 ranked AC/DC 23rd on
+							its list with "100 Greatest Artists of All Time".
+						</span>
+					</div>
+				</div>
+				<div class="band_video">
+					<iframe
+						title=""
+						src="https://www.youtube.com/embed/v2AC41dglnM"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+			<hr />
+			<div
+				id="red"
+				class="rock_band"
+			>
+				<span class="band_title">
+					<a
+						href="https://www.youtube.com/watch?v=YlUKcNNmywk"
+						target="_blank"
+						style="color: #1e003c"
+						>3. Red Hot Chili Peppers</a
+					>
+				</span>
+				<hr />
+				<div class="band_details">
+					<div class="band_photo">
+						<img
+							src="../assets/RHCP.jpg"
+							alt=""
+						/>
+					</div>
+					<div class="band_content">
+						<span>
+							The Red Hot Chili Peppers (usually abbreviated as RHCP) is a band
+							American rock band formed in Los Angeles in 1983. Musical style
+							The group's music includes alternative rock, funk, punk rock and
+							rock psychedelic In live performances their music incorporates
+							elements by jam band due to the improvised nature of many
+							renditions of their. The band currently consists of founding
+							members Anthony Kiedis (vocals) and Flea (bass), longtime drummer
+							Chad Smith; and guitarist John Frusciante. The Red Hot Chili
+							Peppers are one of the the biggest selling bands of all time with
+							over 80 of millions of records sold worldwide, were nominated for
+							sixteen Grammy Awards, of which they won six and they are the most
+							successful band in the history of rock radio alternately currently
+							holding the records for most number one singles (13), most weeks
+							in total number one (85) and most top ten songs (25) on the
+							Billboard Alternative Songs chart. In 2012, they were inducted
+							into the Rock and Roll Hall of Fame. The original composition of
+							the band, originally called Tony Flow and the Miraculously
+							Majestic Masters of Mayhem before switching to Red Hot Chili
+							Peppers after a few shows, included guitarist Hillel Slovak and
+							drummer Jack Irons, alongside Kiedis and Flea. Because of due to
+							commitments with other bands, Slovak and Irons did not take part
+							on the band's debut album, The Red Hot Chili Peppers (1984). Cliff
+							Martinez was the drummer on the first two records (Irons was on
+							third), and guitarist Jack Sherman performed on the first Slovak
+							performed on his second and third album band, Freaky Styley (1985)
+							and The Uplift Mofo Party Plan (1987), but died of a heroin
+							overdose in 1988. As a result of after his friend's death, Irons
+							chose to leave the group. Parliament-Funkadelic guitarist DeWayne
+							McKnight was brought in to replace Slovak, albeit for a short
+							time, this being replaced in turn by Frusciante in 1988. The
+							former drummer of at Dead Kennedys, D.H. Peligro was brought in to
+							replace Irons. He too was kept short, being replaced by Chad Smith
+							in the the same year. The formula with Flea, Kiedis, Frusciante
+							and Smith was longest running and has recorded five studio albums
+							since with Mother's Milk (1989). In 1990, the group signed with
+							Warner Bros. Records and recorded the album Blood Sugar Sex Magik
+							(1991), with Rick Rubin producing. This album became the first
+							great commercial success for the band. Frusciante became
+							uncomfortable with the band's success and left it unexpectedly in
+							1992, in the middle of the Blood Sugar Sex Magik Tour. After two
+							guitarists temps, Arik Marshall and Jesse Tobias, Dave Navarro
+							from Jane's Addiction joined in 1994 and for their next album
+							group, One Hot Minute (1995). Although it was successful in terms
+							of commercially, the album failed to match critical success or
+							popular of the acclaimed Blood Sugar Sex Magik, selling May less
+							than half the sales of its predecessor. Navarro was kicked out of
+							the band in 1998. Frusciante, fresh out of rehab for drug
+							problems, he's back in the band that same year at Flea's request.
+							Being reunited, the four returned to the studio to record
+							Californication (1999), which became the band's biggest commercial
+							success with 16 million copies sold worldwide. This album was
+							followed three years later by By the Way (2002) and then four
+							years later later by the double album Stadium Arcadium (2006),
+							their first album at number one in America. After a world tour,
+							the group a took an extended break. Frusciante announced in 2009
+							that he was leaving friendly band to focus on his solo career,
+							being replaced by Josh Klinghoffer, who worked both as a sideman
+							for band on the Stadium Arcadium tour as well as on his solo
+							projects Frustrating. Klinghoffer appeared on two Red Hot Chili
+							albums Peppers, I'm with You (2011) and The Getaway (2016), before
+							a left the band in 2019 for Frusciante to return again.
+						</span>
+					</div>
+				</div>
+				<div class="band_video">
+					<iframe
+						title=""
+						src="https://www.youtube.com/embed/YlUKcNNmywk"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+			<hr />
+			<div
+				id="theb"
+				class="rock_band"
+			>
+				<span class="band_title">
+					<a
+						href="https://www.youtube.com/watch?v=NCtzkaL2t_Y"
+						target="_blank"
+						style="color: #c4cdcc; text-shadow: 1px 1px black"
+						>4. The Beatles</a
+					>
+				</span>
+				<hr />
+				<div class="band_details">
+					<div class="band_photo">
+						<img
+							src="../assets/thebeatles.jpg"
+							alt=""
+						/>
+					</div>
+					<div class="band_content">
+						<span>
+							"The Beatles" was one of the groups whose music was that more
+							influential for the Rock Era that followed. The group has been
+							created from John Lennon (vocals, rhythm guitar), Paul McCartney
+							(vocals, bass guitar), George Harrison (lead guitar) and Ringo
+							Starr (battery). The Four Fabs originally targeted the generations
+							of young people results after World War II, especially in English
+							speaking countries such as UK, USA, Canada and Australia, but
+							became after their most glorious year, 1964, loved and admired by
+							multiple generations. Judging by the multiples criteria, among
+							which music sales occupy an important place, "The Beatles" is one
+							of the most famous and successful groups in the history of rock
+							music, counting over 1.1 billion records sold worldwide. While
+							they initially became famous for what some have labeled as pop
+							music, their works later they achieved a combination of praise
+							from both sides critics and listeners unmatched in the century
+							20th In the end, they proved not only their talent musicians,
+							crossed the border into cinematography, and in particular, in John
+							Lennon's case it is political activism. In 2004 Rolling Stone
+							magazine ranked The Beatles at number 1 on the list the 100
+							greatest artists of all time. In the according to the same
+							magazine, the innovative music of the band "The Beatles" and their
+							cultural impact helped define the 1960s.
+						</span>
+					</div>
+				</div>
+				<div class="band_video">
+					<iframe
+						title=""
+						src="https://www.youtube.com/embed/NCtzkaL2t_Y"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+			<hr />
+			<div
+				id="u2"
+				class="rock_band"
+			>
+				<span class="band_title">
+					<a
+						target="_blank"
+						style="color: #758585"
+						href="https://www.youtube.com/watch?v=ftjEcrrf7r0"
+						>5. U2</a
+					>
+				</span>
+				<hr />
+				<div class="band_details">
+					<div class="band_photo">
+						<img
+							src="../assets/u2.jpg"
+							alt=""
+						/>
+					</div>
+					<div class="band_content">
+						<span>
+							U2 is an Irish rock band from Dublin. Formed in 1976, it consists
+							of Bono (vocalist and guitarist), The Edge (guitarist,
+							keyboardist, and vocalist), Adam Clayton (bassist), and Larry
+							Mullen, Jr. (percussionist). The music he played early on had its
+							origins in post-punk, but eventually came to incorporate
+							influences from several genres of pop music. Throughout their
+							musical ventures, the four have maintained a sound built on
+							melodic instrumentals, highlighted by The Edge's wide-ranging
+							guitar sound and Bono's expressive vocals. Their lyrics, often
+							laced with spiritual imagery, focus on personal and
+							socio-political themes. U2 formed at Mount Temple Comprehensive
+							School⁠ in 1976, when its members were teenagers with limited
+							musical ability. Within four years, they had signed to Island
+							Records and released their debut album Boy. By the mid-1980s, U2
+							had become a top band of international stature. Until 1987's The
+							Joshua Tree, they had more success touring than selling studio
+							albums. According to Rolling Stone magazine, this album elevated
+							the band from "heroes" to "superstars". Reacting to musical
+							stagnation and criticism of their perceived conventional image and
+							musical direction in the late 1980s, U2 reinvented themselves with
+							the 1991 album Achtung Baby, and the Zoo TV Tour⁠; they integrated
+							dance, industrial and alternative rock influences, and embraced a
+							self-deprecating image. Similar experiments continued throughout
+							the rest of the 1990s with varying degrees of success. U2 regained
+							critical and commercial success in the 2000s with All That You
+							Can't Leave Behind (2000) and How to Dismantle an Atomic Bomb
+							(2004), which established the band's more conventional and
+							mainstream sound. Their 2009–2011 U2 360° Tour was the largest
+							audience and highest-grossing tour in history. U2 have released 12
+							studio albums and are among the best-selling artists of all time,
+							selling more than 150 million records worldwide. They have won 22
+							Grammy Awards, more than any other band, and in 2005 were inducted
+							into the Rock and Roll Hall of Fame in their first year of
+							eligibility. Rolling Stone ranked U2 22nd on its list of the "100
+							Greatest Artists of All Time" and labeled them "the greatest band
+							in the world". Throughout their careers, as a group and
+							individually, they have campaigned for human rights and
+							philanthropic causes, including campaigns with Amnesty
+							International, the ONE/DATA campaign⁠, Product Red⁠ and The Edge's
+							Music Rising⁠ action .
+						</span>
+					</div>
+				</div>
+				<div class="band_video">
+					<iframe
+						title=""
+						allowfullscreen
+						src="https://www.youtube.com/embed/ftjEcrrf7r0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div
+		id="fb"
+		class="feedback__wrapper"
+	>
+		<div class="feedback__container">
+			<span class="band_title fs_title">Feedback Section</span>
+			<hr />
+			<span class="fs_desc"
+				>Do you enjoy what you see or you have a suggestion and you wanna tell
+				us? Please put your ideas below and send us your message, we can't wait
+				to hear your ideas! :)</span
+			>
+			<textarea></textarea>
+			<div>
+				<span class="feedback_error"></span>
+			</div>
+			<div class="feedback_btns">
+				<button
+					class="fb_clear"
+					title="Clear the text area"
+				>
+					Clear Text
+				</button>
+				<button
+					class="fb_send"
+					title="Send the feedback to the admins"
+				>
+					Send
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="footer__wrapper">
+		&copy; Romanian-American University - Project 3 - Web Application
+		Development
+	</div>
+	<!-- HORIZONTAL NAVIGATION -->
+	<div class="horizontal__wrapper">
+		<ul>
+			<li>
+				<div>
+					<span
+						><a
+							href="#whats"
+							style="color: #b83a3d"
+							title="Jump to the intro section"
+							class="nav_link"
+							>What's rock music?</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#queen"
+							style="color: black"
+							title="Jump to the 'Queen' section"
+							class="nav_link"
+							>Queen</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#acdc"
+							style="color: #867c97"
+							title="Jump to the 'AC/DC' section"
+							class="nav_link"
+							>AC/DC</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#red"
+							style="color: #1e003c"
+							title="Jump to the 'Red Hot Chili Peppers' section"
+							class="nav_link"
+							>Red Hot Chili Peppers</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#theb"
+							style="color: #c4cdcc; text-shadow: 1px 1px black"
+							title="Jump to the 'The Beatles' section"
+							class="nav_link"
+							>The Beatles</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#u2"
+							style="color: #758585"
+							title="Jump to the U2 section"
+							class="nav_link"
+							>U2</a
+						></span
+					>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span
+						><a
+							href="#fb"
+							style="color: #00b285"
+							title="Jump to the feedback section"
+							class="nav_link"
+							>Feedback</a
+						></span
+					>
+				</div>
+			</li>
+		</ul>
+		<div class="h_bar"></div>
+	</div>
+	<!-- MOBILE NAVIGATION -->
+	<div class="mobilenav__wrapper">
+		<div class="mobilenav_container">
+			<div class="mobilenav_head">
+				<button
+					id="back"
+					class="mobilenav_back"
+					onclick="close_navigation()"
+				>
+					BACK
+				</button>
+				<span>Navigation Menu:</span>
+			</div>
+			<hr />
+			<div class="mobilenav_links">
+				<ul>
+					<li>
+						<div>
+							<span
+								><a
+									href="#whats"
+									style="color: #b83a3d"
+									title="Jump to the intro section"
+									class="mobnav_link"
+									>What's rock music?</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#queen"
+									style="color: black"
+									title="Jump to the 'Queen' section"
+									class="mobnav_link"
+									>Queen</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#acdc"
+									style="color: #867c97"
+									title="Jump to the 'AC/DC' section"
+									class="mobnav_link"
+									>AC/DC</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#red"
+									style="color: #1e003c"
+									title="Jump to the 'Red Hot Chili Peppers' section"
+									class="mobnav_link"
+									>Red Hot Chili Peppers</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#theb"
+									style="color: #c4cdcc; text-shadow: 1px 1px black"
+									title="Jump to the 'The Beatles' section"
+									class="mobnav_link"
+									>The Beatles</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#u2"
+									style="color: #758585"
+									title="Jump to the U2 section"
+									class="mobnav_link"
+									>U2</a
+								></span
+							>
+						</div>
+					</li>
+					<li>
+						<div>
+							<span
+								><a
+									href="#fb"
+									style="color: #00b285"
+									title="Jump to the feedback section"
+									class="mobnav_link"
+									>Feedback</a
+								></span
+							>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<hr />
+			<div class="mobilenav__btns">
+				<a
+					class="hero_btn mobilenav_btn"
+					href="/myaccount"
+					>My Account</a
+				>
+				<% if(user.role === "Admin") { %>
+				<a
+					class="hero_btn mobilenav_btn"
+					href="/dashboard"
+					>Admin Panel</a
+				>
+				<% } %>
+				<form
+					method="post"
+					action="/signout"
+					id="signout_form"
+				>
+					<button
+						class="hero_btn signout navsign mobilenav_btn"
+						style="color: #eee"
+						type="submit"
+					>
+						SIGN OUT
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/main.js"></script>
+
+<!--
 	<h1><font color="black"><i>Ce Este Muizca Rock?</i></font></h1>
 		<h4><font color="black"><i>W</i></font></h4>
 		<hr>
@@ -238,19 +1038,6 @@ a lui The Edge.
 		</p>
 		<hr>
 		<p>
-		<b>Surse de inspiratie:</b>
-		</p><ul>
-		   <li><a href="https://en.wikipedia.org/wiki/Queen_(band)" target="_blank">https://en.wikipedia.org/wiki/Queen_(band)</a></li>
-		   <li><a href="https://en.wikipedia.org/wiki/AC/DC" target="_blank">https://en.wikipedia.org/wiki/AC/DC</a></li>
-		   <li><a href="https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers" target="_blank">https://en.wikipedia.org/wiki/Red_Hot_Chili_Peppers</a></li>
-		   <li><a href="https://en.wikipedia.org/wiki/The_Beatles">https://en.wikipedia.org/wiki/The_Beatles</a></li>
-		   <li><a href="https://en.wikipedia.org/wiki/U2" target="_blank">https://en.wikipedia.org/wiki/U2</a></li>
-		<p></p>
-		<hr>
-		<p>
-		<font color="blue"><b>!MULTUMESC PENTRU VIZIONARE!</b></font>
-		</p><hr>
-		<p></p>
 	
 
 
@@ -258,3 +1045,4 @@ a lui The Edge.
 
 </ul></body></html>
 </div>
+-->

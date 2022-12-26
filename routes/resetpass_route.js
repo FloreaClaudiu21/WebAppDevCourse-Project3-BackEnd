@@ -1,6 +1,6 @@
 const User = require("../public/js/user");
 const router = require("express").Router();
-const page_title = "PAGE TITLE HERE | Reset password";
+const page_title = "Brief history of famous rock bands | Reset password";
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
 const Validate = require("../public/js/validate");
