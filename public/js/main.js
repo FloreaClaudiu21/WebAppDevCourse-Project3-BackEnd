@@ -30,39 +30,23 @@ const change_profile_img = () => {
 	return;
 };
 let new_entry;
-const define_progress = (entries) => {
-	let pos = 0;
-	let entryPos;
-	const p_bar = document.querySelector(".p_bar");
-	const bands_parent = document.querySelector(".bands_wrapper");
-	entries.forEach((entry) => {
-		if (entry.isIntersecting) {
-			entryPos = entry.target;
-		}
-	});
-	if (entryPos === undefined) {
-		return;
+const define_progress = () => {
+	const pbar = document.querySelector(".p_bar");
+	const hero = document.querySelector("#hero");
+	let currentState = document.documentElement.scrollTop - hero.clientHeight;
+	let pageHeight =
+		document.documentElement.scrollHeight -
+		document.documentElement.clientHeight -
+		hero.clientHeight;
+	let scrollStatePercentage = (currentState / pageHeight) * 100;
+	if (scrollStatePercentage < 0.1) {
+		pbar.style.width = "0%";
+	} else {
+		pbar.style.width = scrollStatePercentage + "%";
 	}
-	// ADD KIDS TO LIST
-	let kids = [];
-	for (let i = 0; i < bands_parent.children.length; i++) {
-		let kid = bands_parent.children[i];
-		if (kid.hasAttribute("id")) {
-			kids.push(kid);
-		}
-	}
-	kids.push(document.querySelector(".feedback__wrapper"))
-	for (let i = 0; i < kids.length; i++) {
-		let id = entryPos.id;
-		let kid = kids[i];
-		if (kid.id.includes(id)) {
-			pos = i + 1;
-			break;
-		}
-	}
-	let progress = Math.round((pos / kids.length) * 100);
-	p_bar.setAttribute("style", `width: ${progress}%`);
-	return;
+};
+window.onscroll = () => {
+	define_progress();
 };
 // SCROLL DETECT BAND BOX
 const observer = new IntersectionObserver(onIntersection, {
@@ -71,7 +55,6 @@ const observer = new IntersectionObserver(onIntersection, {
 	threshold: 0,
 });
 function onIntersection(entries, opts) {
-	define_progress(entries);
 	entries.forEach((entry) => {
 		const cl = entry.target;
 		if (entry.isIntersecting) {
