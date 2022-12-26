@@ -29,20 +29,40 @@ const change_profile_img = () => {
 	}
 	return;
 };
-// SCROLL UPDATE PROGRESS BAR
-const header = document.querySelector("#hero");
-const p_bar = document.querySelector(".p_bar");
-const main = document.querySelector(".mainpage__wrapper");
-window.onscroll = () => {
-	const height = main.scrollHeight - header.clientHeight;
-	const top = window.scrollY - window.screenTop - header.clientHeight;
-	let progress = Math.round((top / height) * 100);
-	if (progress < 0) {
-		progress = 0;
-	} else if (progress > 95) {
-		progress = 100;
+let new_entry;
+const define_progress = (entries) => {
+	let pos = 0;
+	let entryPos;
+	const p_bar = document.querySelector(".p_bar");
+	const bands_parent = document.querySelector(".bands_wrapper");
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			entryPos = entry.target;
+		}
+	});
+	if (entryPos === undefined) {
+		return;
 	}
+	// ADD KIDS TO LIST
+	let kids = [];
+	for (let i = 0; i < bands_parent.children.length; i++) {
+		let kid = bands_parent.children[i];
+		if (kid.hasAttribute("id")) {
+			kids.push(kid);
+		}
+	}
+	kids.push(document.querySelector(".feedback__wrapper"))
+	for (let i = 0; i < kids.length; i++) {
+		let id = entryPos.id;
+		let kid = kids[i];
+		if (kid.id.includes(id)) {
+			pos = i + 1;
+			break;
+		}
+	}
+	let progress = Math.round((pos / kids.length) * 100);
 	p_bar.setAttribute("style", `width: ${progress}%`);
+	return;
 };
 // SCROLL DETECT BAND BOX
 const observer = new IntersectionObserver(onIntersection, {
@@ -50,8 +70,8 @@ const observer = new IntersectionObserver(onIntersection, {
 	rootMargin: "-350px",
 	threshold: 0,
 });
-let new_entry;
 function onIntersection(entries, opts) {
+	define_progress(entries);
 	entries.forEach((entry) => {
 		const cl = entry.target;
 		if (entry.isIntersecting) {
@@ -94,7 +114,6 @@ for (let i = 0; i < el.length; i++) {
 observer.observe(document.querySelector(".hero__wrapper"));
 observer.observe(document.querySelector(".rock_info"));
 observer.observe(document.querySelector(".feedback__wrapper"));
-
 const open_navigation = () => {
 	let nav_el = document.querySelector(".mobilenav__wrapper");
 	let menu_el = document.querySelector(".mobilenav_container");
@@ -118,4 +137,6 @@ const close_navigation = () => {
 };
 
 const moblinenav_links = document.querySelectorAll(".mobnav_link");
-moblinenav_links.forEach(el => el.addEventListener("click", close_navigation));
+moblinenav_links.forEach((el) =>
+	el.addEventListener("click", close_navigation)
+);

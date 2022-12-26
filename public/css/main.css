@@ -123,8 +123,9 @@ body {
 }
 
 .hero__wrapper {
+	height: auto;
 	display: flex;
-	height: 100vh;
+	min-height: 100vh;
 	position: relative;
 	flex-direction: column;
 }
@@ -217,7 +218,9 @@ body {
 	flex: 1;
 	gap: 1rem;
 	z-index: 1;
+	padding: 5px;
 	display: flex;
+	margin-top: 80px;
 	position: relative;
 	place-items: center;
 	flex-direction: column;
@@ -236,7 +239,14 @@ body {
 .hero_scrolldown {
 	bottom: 1rem;
 	height: 130px;
-	position: absolute;
+}
+
+.hero__wrap-text {
+	gap: 1rem;
+	display: flex;
+	place-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .mainpage_logo {
