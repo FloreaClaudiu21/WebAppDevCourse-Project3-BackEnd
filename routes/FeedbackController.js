@@ -19,15 +19,19 @@ router.get("/api/v1/feedbacks", async (req, res) => {
 // [POST] ADD FEEDBACK IN THE DATABASE
 router.post("/api/v1/feedbacks", async (req, res) => {
 	const { mode, uuid, uid, time, message } = req.body;
-	if (!mode || !uuid || !uid || !time || !message) {
-		res.status(404).json({ error: true, response: "Invalid data" });
-		return;
-	}
 	let statement = "";
 	const database = new Database();
 	if (mode === "delete") {
+		if (!mode || !uuid) {
+			res.status(404).json({ error: true, response: "Invalid data" });
+			return;
+		}
 		statement = `DELETE FROM feedbacks WHERE uuid='${uuid}'`;
 	} else {
+		if (!mode || !uuid || !uid || !time || !message) {
+			res.status(404).json({ error: true, response: "Invalid data" });
+			return;
+		}
 		statement = `INSERT INTO feedbacks(uuid, uid, time, message) VALUES ('${uuid}','${uid}','${time}','${message}')`;
 	}
 	const result = await database.fetch(statement);
