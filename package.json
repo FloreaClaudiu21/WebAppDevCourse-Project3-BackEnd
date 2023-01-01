@@ -15,7 +15,7 @@
     "store": "^2.0.12"
   },
   "scripts": {
-    "build": "netlify-lambda build public",
+    "build": "npm run start",
     "start": "nodemon app.js"
   },
   "devDependencies": {
