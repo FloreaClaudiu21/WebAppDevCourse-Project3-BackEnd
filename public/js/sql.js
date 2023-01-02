@@ -11,7 +11,6 @@ class Database {
 	async fetch(q) {
 		let results = null;
 		try {
-			await this.query("USE webapp");
 			let result = await this.query(q);
 			results = result;
 		} catch (err) {
@@ -19,6 +18,13 @@ class Database {
 		}
 		this.SQLCON.end();
 		return results;
+	}
+	async init() {
+		try {
+			await this.query("USE webapp");
+		} catch (err) {
+			console.log(err);
+		}
 	}
 }
 
