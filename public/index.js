@@ -20,7 +20,6 @@ app.use(express.static(publicDir));
 ///////////////////////////////////
 // CONNECT TO THE DATABASE
 const DATABASE = new Database();
-DATABASE.init();
 // APP ROUTES
 const { main_route: BandsController } = require("../routes/BandsController");
 const {
