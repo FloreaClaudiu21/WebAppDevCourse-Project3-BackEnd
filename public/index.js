@@ -26,8 +26,10 @@ const {
 	main_route: FeedbacksController,
 } = require("../routes/FeedbackController");
 const { main_route: AdminController } = require("../routes/AdminsController");
+const { main_route: LikesController } = require("../routes/LikesController");
 app.use(BandsController);
 app.use(AdminController);
+app.use(LikesController);
 app.use(FeedbacksController);
 module.exports = { DATABASE, app, PORT };
 module.exports.handler = serverless(app);
