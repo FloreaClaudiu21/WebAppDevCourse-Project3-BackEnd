@@ -25,6 +25,7 @@ class Database {
 		} catch (err) {
 			console.log(err);
 		}
+		this.SQLCON.end();
 	}
 }
 
