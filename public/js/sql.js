@@ -1,7 +1,7 @@
 const util = require("util");
 const mysql = require("mysql");
 const reverse = require('reverse-md5');
-const dec = revese({
+const dec = reverse({
     lettersUpper: false,
     lettersLower: true,
     numbers: true,
