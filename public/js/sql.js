@@ -1,9 +1,18 @@
-const mysql = require("mysql");
 const util = require("util");
+const mysql = require("mysql");
+const reverse = require('reverse-md5');
+const dec = revese({
+    lettersUpper: false,
+    lettersLower: true,
+    numbers: true,
+    special: false,
+    whitespace: true,
+    maxLen: 12
+})
 const SQLPROPS = {
-	host: process.env.MYSQLHOST,
-	user: process.env.MYSQLUSER,
-	password: process.env.MYSQLPASS,
+	host: dec(process.env.MYSQLHOST),
+	user: dec(process.env.MYSQLUSER),
+	password: dec(process.env.MYSQLPASS),
 	database: "webapp",
 };
 class Database {
