@@ -4,6 +4,7 @@ const SQLPROPS = {
 	host: process.env.MYSQLHOST,
 	user: process.env.MYSQLUSER,
 	password: process.env.MYSQLPASS,
+	database: "webapp",
 };
 class Database {
 	SQLCON = mysql.createConnection(SQLPROPS);
@@ -11,7 +12,6 @@ class Database {
 	async fetch(q) {
 		let results = null;
 		try {
-			await this.query("USE webapp");
 			let result = await this.query(q);
 			results = result;
 		} catch (err) {
