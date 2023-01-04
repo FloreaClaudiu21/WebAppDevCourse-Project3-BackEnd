@@ -11,6 +11,7 @@
     "netlify-lambda": "^2.0.15",
     "node-localstorage": "^2.2.1",
     "path": "^0.12.7",
+    "reverse-md5": "^0.0.5",
     "serverless-http": "^3.1.0",
     "store": "^2.0.12"
   },
