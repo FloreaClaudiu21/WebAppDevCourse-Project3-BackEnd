@@ -11,6 +11,7 @@ class Database {
 	query = util.promisify(this.SQLCON.query).bind(this.SQLCON);
 	async fetch(q) {
 		let results = null;
+		this.SQLCON.connect();
 		try {
 			let result = await this.query(q);
 			results = result;
