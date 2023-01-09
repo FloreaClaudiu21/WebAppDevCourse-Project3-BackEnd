@@ -12,7 +12,7 @@
     "node-localstorage": "^2.2.1",
     "path": "^0.12.7",
     "reverse-md5": "^0.0.5",
-    "serverless-http": "^3.1.0",
+    "serverless-http": "^3.1.1",
     "store": "^2.0.12"
   },
   "scripts": {

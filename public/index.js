@@ -14,7 +14,6 @@ const publicDir = path.join(__dirname, "public");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/.netlify/functions/server', router);
 // STATIC LINKS
 app.use(express.static(publicDir));
 ///////////////////////////////////
